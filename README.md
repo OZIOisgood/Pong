@@ -1,9 +1,5 @@
 # Pong
 
-
-
-ReadMe.txt
-
 C++ exam
 
 Created by Pavel Lobarev on 2.09.2020.
