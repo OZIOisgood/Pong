@@ -26,19 +26,11 @@ bool checkEdge(int i) // Y borders for player
 {
     if (i == 1)
         if (a[0].y <= 10 - 1 || a[0].y + 250 >= height - 10 + 1)
-        {
-            //std::cout << "Hey, WTF! " << a[0].y << " == " << height + 1 << std::endl;
-            
             return 1;
-        }
     
     if (i == 2)
         if (a[1].y <= 10 - 1 || a[1].y + 250 >= height - 10 + 1)
-        {
-            //std::cout << "Hey, WTF! " << a[0].y << " == " << height + 1 << std::endl;
-            
             return 1;
-        }
 
     return 0;
 }
@@ -47,16 +39,14 @@ bool checkPing(int i) // Check pong ricochet from player
 {
     if (i == 1)
     {
-        if (a[2].x <= a[0].x + 25 && ((a[2].y + 50 >= a[0].y && a[2].y + 50 <= a[0].y + 250) ||
-                                          (a[2].y >= a[0].y && a[2].y <= a[0].y + 250)))
+        if (a[2].x <= a[0].x + 25 && ((a[2].y + 50 >= a[0].y && a[2].y + 50 <= a[0].y + 250) || (a[2].y >= a[0].y && a[2].y <= a[0].y + 250)))
             return 1;
     }
     
     
     if (i == 2)
     {
-        if (a[2].x >= a[1].x - 25 && ((a[2].y + 50 >= a[1].y && a[2].y + 50 <= a[1].y + 250) ||
-                                          (a[2].y >= a[1].y && a[2].y <= a[1].y + 250)))
+        if (a[2].x >= a[1].x - 25 && ((a[2].y + 50 >= a[1].y && a[2].y + 50 <= a[1].y + 250) || (a[2].y >= a[1].y && a[2].y <= a[1].y + 250)))
             return 1;
     }
 
@@ -65,7 +55,7 @@ bool checkPing(int i) // Check pong ricochet from player
 
 bool checkGoal() // Check for goal
 {
-        if (a[2].x < 0 || a[2].x > width) return 1;
+    if (a[2].x < 0 || a[2].x > width) return 1;
 
     return 0;
 }
@@ -98,7 +88,7 @@ int main()
     int     score2      = 0;
     
     // For pong
-    int     dirX        = 0;        // Direction X
+    int     dirX        = 0;   // Direction X
     int     dirY        = 0;   // Direction Y
     
     // menu
@@ -123,7 +113,6 @@ int main()
     
     Font font;
     font.loadFromFile("/System/Library/Fonts/Supplemental/Futura.ttc");
-    //font.loadFromFile("fonts/progresspixel-bold.ttf");
     
     Clock clock;
     
@@ -142,15 +131,12 @@ int main()
 
     
     RectangleShape player1(Vector2f(25.f, 250.f));
-    //player1.move(0, 375);
     player1.setFillColor(Color(255, 165, 0));
     
     RectangleShape player2(Vector2f(25.f, 250.f));
-    //player2.move(1475, 375);
     player2.setFillColor(Color(255, 165, 0));
     
     RectangleShape pong(Vector2f(50.f, 50.f));
-    //pong.move(725, 475);
     pong.setFillColor(Color(255, 255, 0));
     
     CircleShape ball(25.f);
@@ -211,25 +197,16 @@ int main()
                 window.close();
             
             if(event.key.code == Keyboard::Q)
-            {
                 p1DirY++;
-                //std::cout << "Q is pressed "   << p1DirY << std::endl;
-            }
 
             if(event.key.code ==  Keyboard::A)
                 p1DirY--;
 
             if(event.key.code == Keyboard::P)
-            {
                 p2DirY--;
-                //std::cout << "P is pressed "   << p2DirY << std::endl;
-            }
 
             if(event.key.code == Keyboard::L)
-            {
                 p2DirY++;
-                //std::cout << "L is pressed "   << p2DirY << std::endl;
-            }
         }
         
         
@@ -239,24 +216,6 @@ int main()
         //~~~~~~~~ Pong ~~~~~~~~//
         
         
-        
-        
-        
-        
-//        if(Keyboard::isKeyPressed(Keyboard::Q))
-//        {
-//            p1DirY++;
-//            //std::cout << "Q is pressed "   << p1DirY << std::endl;
-//        }
-//
-//        if(Keyboard::isKeyPressed(Keyboard::A))
-//            p1DirY--;
-//
-//        if(event.key.code == Keyboard::P)
-//            p2DirY--;
-//
-//        if(event.key.code == Keyboard::L)
-//            p2DirY++;
 
         if(isMenu)
         {
@@ -288,23 +247,17 @@ int main()
             
             
             window.clear(Color(15, 48, 82,0));
-            
-            //std::cout << "isMenu" <<  std::endl;
         
             window.draw(playMenuText);
             window.draw(exitMenuText);
-//            window.draw(line);
-//            window.draw(lineCentre);
             
             player1 .setPosition(0, 250);
             player2 .setPosition(1475, 500);
             ball    .setPosition(300, 125);
-            //pong    .setPosition(900, 500);
             
             window.draw(player1);
             window.draw(player2);
             window.draw(ball);
-            //window.draw(pong);
         
             window.display();
             
@@ -319,8 +272,8 @@ int main()
             {
             
                 window.clear(Color(15, 48, 82,0));
-            
-                //std::cout << "threeTwoOne " << numNum << " Time " << timerNum <<  std::endl;
+                
+                
                 Text numText(std::to_string(numNum), font, 150);
                 numText.setFillColor(Color::White);
                 numText.setPosition(700, 400);
@@ -332,8 +285,6 @@ int main()
                 }
             
                 window.draw(numText);
-//                window.draw(line);
-//                window.draw(lineCentre);
             
                 window.display();
             
@@ -354,17 +305,12 @@ int main()
                 if(!game)
                 {
                     int randColor = rand() % 2 * 255;
-                    //ball.setFillColor(Color(230, 0, 230));
                     ball.setFillColor(Color(255, 255, randColor));
                     pong.setFillColor(Color(255, 255, randColor));
             
             
                     dirX = rand() % 2;
                     dirY = rand() % 2;
-            
-//                    std::cout << "!game"        << std::endl;
-//                    std::cout << "X "   << dirX << std::endl;
-//                    std::cout << "Y "   << dirY << std::endl;
             
                     a[0].x = 0;
                     a[0].y = 375;
@@ -386,34 +332,33 @@ int main()
                     if(dirX == 1)
                     {
                         b[2].x =    a[2].x;
-                        a[2].x +=   1; //std::cout << a[2].x << "\t";
+                        a[2].x +=   1;
                     }
                     else
                     {
                         b[2].x =    a[2].x;
-                        a[2].x -=   1; //std::cout << a[2].x << "\t";
+                        a[2].x -=   1;
                     }
             
             
                     if(dirY == 1)
                     {
                         b[2].y =    a[2].y;
-                        a[2].y +=   1; //std::cout << a[2].y << std::endl;
+                        a[2].y +=   1;
                     }
                     else
                     {
                         b[2].y =    a[2].y;
-                        a[2].y -=   1; //std::cout << a[2].y << std::endl;
+                        a[2].y -=   1;
                     }
             
                     if(checkOut(2))
                     {
                         if(dirY == 1)
-                            dirY = 0; //std::cout << "dirY changed! " << dirY <<    std::endl;
+                            dirY = 0;
                         else
-                            dirY = 1; //std::cout << "dirY changed! " << dirY <<    std::endl;
-            
-                        //std::cout << "Old delay\t" << delay << std::endl;
+                            dirY = 1;
+                        
                         delay *= 1.2;
                         std::cout << "New delay\t" << delay << std::endl <<     std::endl;
             
@@ -424,13 +369,12 @@ int main()
                     else if(checkPing(1) || checkPing(2))
                     {
                         if(dirX == 1)
-                            dirX = 0; //std::cout << "dirY changed! " << dirY <<    std::endl;
+                            dirX = 0;
                         else
-                            dirX = 1; //std::cout << "dirY changed! " << dirY <<    std::endl;
+                            dirX = 1;
             
                         a[2].y = b[2].y;
-            
-                        //std::cout << "Old delay\t" << delay << std::endl;
+                        
             
                         delay /= 1.7;
             
@@ -463,45 +407,35 @@ int main()
             
                     timer = 0;
                 }
-            
-//                p1DirY = -1;
-//                p2DirY = 1;
+                
             
             
             
             
                 if(p1DirY == 1)
                 {
-                    //std::cout << "Q is pressed "   << p1DirY << std::endl;
                     b[0].y =    a[0].y;
                     a[0].y -=   40;
                 }
             
                 if(p1DirY == -1)
                 {
-                    //std::cout << "A is pressed "   << p1DirY << std::endl;
                     b[0].y =    a[0].y;
                     a[0].y +=   40;
-            
-                    //std::cout << a[0].y << std::endl;
                 }
             
             
             
                 if(p2DirY == -1)
                 {
-                    //std::cout << "P is pressed "   << p2DirY << std::endl;
                     b[1].y =    a[1].y;
                     a[1].y -=   40;
                 }
             
                 if(p2DirY == 1)
                 {
-                    //std::cout << "L is pressed "   << p2DirY << std::endl;
                     b[1].y =    a[1].y;
                     a[1].y +=   40;
-            
-                    //std::cout << a[1].x << "\t"  << a[1].y << std::endl;
                 }
             
             
@@ -509,7 +443,6 @@ int main()
             
                 if(checkEdge(1))
                 {
-                    //std::cout << "\t old " << b[0].y << std::endl;
                     a[0].y = b[0].y;
                     player1.setPosition(0, b[0].y);
                 }
@@ -558,9 +491,6 @@ int main()
             
             
                 window.draw(line);
-//                window.draw(lineCentre);
-            
-                //window.draw(pong);
             
                 ball.setPosition(a[2].x, a[2].y);
                 window.draw(ball);
